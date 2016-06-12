@@ -1,7 +1,7 @@
 <!doctype html>
 
 <html>
-  <head>
+<head>
     <title>baseball-scores</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,8 +13,26 @@
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
     <link rel="import" href="/src/baseball-scores-app/baseball-scores-app.html">
-  </head>
-  <body>
+    <link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
+    <link rel="import" href="../../bower_components/paper-scroll-header-panel/paper-scroll-header-panel.html">
+    <link rel="import" href="/src/technology/technology.html">
+    <style>
+        paper-scroll-header-panel {
+            position: absolute !important;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background-color: var(--paper-grey-200, #eee);
+        }
+    </style>
+</head>
+<body>
+<paper-scroll-header-panel class="flex" keep-condensed-header condensed-header-height="64">
+    <paper-toolbar>
+        <span class="title">MLB Scores</span>
+    </paper-toolbar>
     <baseball-scores-app></baseball-scores-app>
-  </body>
+</paper-scroll-header-panel>
+</body>
 </html>

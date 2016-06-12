@@ -1,6 +1,9 @@
 {
   "name": "MLB Scores",
   "short_name": "MLB Scores",
+  "theme_color": "#000088",
   "start_url": "/",
-  "display": "standalone"
+  "display": "standalone",
+  "background_color": "#CC0000",
+  "orientation": "portrait"
 }

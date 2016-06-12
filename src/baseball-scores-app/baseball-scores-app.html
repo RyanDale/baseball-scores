@@ -2,14 +2,16 @@
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
-
+<link rel="import" href="../../bower_components/paper-fab/paper-fab.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
-
+<link rel="import" href="../../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../../bower_components/paper-scroll-header-panel/paper-scroll-header-panel.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../bower_components/paper-datatable/paper-datatable.html">
 <link rel="import" href="../../bower_components/paper-datatable/paper-datatable-column.html">
 
 <dom-module id="baseball-scores-app">
+    <link rel="import" href="/src/technology/technology.css" type="css">
     <template>
         <style>
             :host {
@@ -23,16 +25,15 @@
                 padding: 12px;
                 margin: 4px;
             }
+            #fab {
+                position: fixed;
+                bottom: 16px;
+                right: 32px;
+            }
+
+
+
         </style>
-        <div class="container">
-            <h2>MLB Scores</h2>
-        </div>
-        <div class="container">
-            <paper-button raised on-click="refreshScores">
-                <iron-icon icon="icons:refresh"></iron-icon>
-                Refresh Scores
-            </paper-button>
-        </div>
         <div class="container">
             <template is="dom-repeat" items="{{scores.event}}">
                 <paper-card heading="[[item.away_team.first_name]] vs. [[item.home_team.first_name]]" class="box-score">
@@ -67,11 +68,12 @@
                         </table>
                     </div>
                     <div class="card-actions">
-                        <paper-button raised>View Box Score</paper-button>
+                        <paper-button raised class="secondary">View Box Score</paper-button>
                     </div>
                 </paper-card>
             </template>
         </div>
+        <paper-fab id="fab" icon="refresh"></paper-fab>s
         <!--
         <iron-ajax auto url="https://erikberg.com/events.json" handle-as="json"
                    headers='{"Authorization": "Bearer 8d11591d-a588-43b5-9dea-a68fb2b1fc39"}'
