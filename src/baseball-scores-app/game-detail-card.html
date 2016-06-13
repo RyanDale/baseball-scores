@@ -1,0 +1,100 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+
+<dom-module id="game-detail-card">
+    <link rel="import" href="/src/technology/technology.css" type="css">
+    <template>
+        <style>
+            :host {
+                display: block;
+            }
+            .box-score {
+                padding: 12px;
+                margin: 4px;
+                width: 100%;
+            }
+        </style>
+        <paper-card heading="[[game.away_team.first_name]] vs. [[game.home_team.first_name]]" class="box-score">
+            <div class="card-content">
+                <div>
+                    <template is="dom-if" if="[[!gamePlayed]]">
+                        <strong>[[startTime]]</strong>
+                    </template>
+                    <h6>[[game.site.name]]</h6>
+                    [[game.site.city]], [[game.site.state]]
+                </div>
+                <template is="dom-if" if="[[gamePlayed]]">
+                    <table class="bordered">
+                        <thead>
+                        <tr>
+                            <th data-field="teams">Teams</th>
+                            <template is="dom-repeat" items="[[numberOfInnings]]">
+                                <th data-field="inning-[[item]]">[[item]]</th>
+                            </template>
+                            <template is="dom-if" if="[[gamePlayed]]">
+                                <th data-field="runs">R</th>
+                            </template>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>[[game.away_team.last_name]]</td>
+                            <template is="dom-repeat" items="{{awayPeriodScores}}">
+                                <td>{{item}}</td>
+                            </template>
+                            <template is="dom-if" if="[[gamePlayed]]">
+                                <td>
+                                    <strong>{{game.away_points_scored}}</strong>
+                                </td>
+                            </template>
+                        </tr>
+                        <tr>
+                            <td>[[game.home_team.last_name]]</td>
+                            <template is="dom-repeat" items="{{homePeriodScores}}">
+                                <td>{{item}}</td>
+                            </template>
+                            <template is="dom-if" if="[[gamePlayed]]">
+                                <td>
+                                    <strong>{{game.home_points_scored}}</strong>
+                                </td>
+                            </template>
+                        </tr>
+                        </tbody>
+                    </table>
+                </template>
+            </div>
+            <template is="dom-if" if="[[gamePlayed]]">
+                <div class="card-actions">
+                    <paper-button raised class="secondary">View Box Score</paper-button>
+                </div>
+            </template>
+        </paper-card>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'game-detail-card',
+            properties: {
+                game: Object,
+                innings: {
+                    type: Array,
+                    value: _.range(1, 10)
+                }
+            },
+            ready() {
+                this.numberOfInnings = _.range(1, this.game.home_period_scores.length + 1);
+                this.gamePlayed = this.game.home_points_scored >= 0 && this.game.away_points_scored >= 0;
+
+                function cleanScore(score) {
+                    return score >= 0 ? score : 'X';
+                }
+
+                this.homePeriodScores = _.map(this.game.home_period_scores, cleanScore);
+                this.awayPeriodScores = _.map(this.game.away_period_scores, cleanScore);
+                this.startTime = moment(this.game.start_date_time).format('LT');
+            }
+        });
+    </script>
+</dom-module>
