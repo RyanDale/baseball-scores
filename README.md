@@ -1,6 +1,6 @@
-# \<baseball-scores\>
+# Baseball Scores
 
-
+![Alt text](http://i.imgur.com/25B0sLA.png "Baseball Scores Screenshot")
 
 ## Install the Polymer-CLI
 
