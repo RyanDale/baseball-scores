@@ -1,0 +1,24 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+
+<dom-module id="game-box-score">
+    <link rel="import" href="/src/technology/technology.css" type="css">
+    <template>
+        Box Score for id {{routeData.eventId}}
+        <app-route
+                route="{{route}}"
+                pattern="/:eventId"
+                data="{{routeData}}"></app-route>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'game-box-score',
+            properties: {},
+            ready() {}
+        });
+    </script>
+</dom-module>
