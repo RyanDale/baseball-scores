@@ -67,7 +67,9 @@
             </div>
             <template is="dom-if" if="[[gamePlayed]]">
                 <div class="card-actions">
-                    <paper-button raised class="secondary">View Box Score</paper-button>
+                    <a href="/box-score/{{game.event_id}}/" tabindex="-1">
+                        <paper-button raised class="secondary">View Box Score</paper-button>
+                    </a>
                 </div>
             </template>
         </paper-card>
