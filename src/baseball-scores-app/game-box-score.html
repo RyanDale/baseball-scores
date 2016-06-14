@@ -1,6 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/app-route/app-route.html">
 <link rel="import" href="box-score-hitters.html">
+<link rel="import" href="box-score-pitchers.html">
 
 <dom-module id="game-box-score">
     <link rel="import" href="/src/technology/technology.css" type="css">
@@ -9,10 +10,16 @@
                            batters="[[boxScore.away_batters]]"
                            batter-totals="[[boxScore.away_batter_totals]]">
         </box-score-hitters>
+        <box-score-pitchers team="[[boxScore.away_team]]"
+                            pitchers="[[boxScore.away_pitchers]]">
+        </box-score-pitchers>
         <box-score-hitters team="[[boxScore.home_team]]"
                            batters="[[boxScore.home_batters]]"
                            batter-totals="[[boxScore.home_batter_totals]]">
         </box-score-hitters>
+        <box-score-pitchers team="[[boxScore.home_team]]"
+                            pitchers="[[boxScore.home_pitchers]]">
+        </box-score-pitchers>
         <app-route route="{{route}}" pattern="/:eventId" data="{{routeData}}"></app-route>
     </template>
 
