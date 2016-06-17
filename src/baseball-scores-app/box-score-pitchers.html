@@ -5,49 +5,38 @@
 <dom-module id="box-score-pitchers">
     <link rel="import" href="/src/technology/technology.css" type="css">
     <template>
-        <style>
-            .box-score {
-                padding: 12px;
-                margin: 4px;
-                width: 100%;
-            }
-        </style>
-        <paper-card heading="[[team.full_name]]" class="box-score">
-            <div class="card-content">
-                <table class="bordered striped">
-                    <thead>
-                    <tr>
-                        <th>Pitchers</th>
-                        <th>IP</th>
-                        <th>H</th>
-                        <th>R</th>
-                        <th>ER</th>
-                        <th>BB</th>
-                        <th>SO</th>
-                        <th>HR</th>
-                        <th>PC-ST</th>
-                        <th>ERA</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <template is="dom-repeat" items="[[pitchers]]">
-                        <tr>
-                            <td>[[item.display_name]]</td>
-                            <td>[[item.innings_pitched]]</td>
-                            <td>[[item.hits_allowed]]</td>
-                            <td>[[item.runs_allowed]]</td>
-                            <td>[[item.earned_runs]]</td>
-                            <td>[[item.walks]]</td>
-                            <td>[[item.strike_outs]]</td>
-                            <td>[[item.home_runs_allowed]]</td>
-                            <td>[[item.pitch_count]]-[[item.pitches_strikes]]</td>
-                            <td>[[item.era]]</td>
-                        </tr>
-                    </template>
-                    </tbody>
-                </table>
-            </div>
-        </paper-card>
+        <table class="bordered striped">
+            <thead>
+            <tr>
+                <th>Pitchers</th>
+                <th>IP</th>
+                <th>H</th>
+                <th>R</th>
+                <th>ER</th>
+                <th>BB</th>
+                <th>SO</th>
+                <th>HR</th>
+                <th>PC-ST</th>
+                <th>ERA</th>
+            </tr>
+            </thead>
+            <tbody>
+            <template is="dom-repeat" items="[[pitchers]]">
+                <tr>
+                    <td>[[item.display_name]]</td>
+                    <td>[[item.innings_pitched]]</td>
+                    <td>[[item.hits_allowed]]</td>
+                    <td>[[item.runs_allowed]]</td>
+                    <td>[[item.earned_runs]]</td>
+                    <td>[[item.walks]]</td>
+                    <td>[[item.strike_outs]]</td>
+                    <td>[[item.home_runs_allowed]]</td>
+                    <td>[[item.pitch_count]]-[[item.pitches_strikes]]</td>
+                    <td>[[item.era]]</td>
+                </tr>
+            </template>
+            </tbody>
+        </table>
     </template>
 
     <script>

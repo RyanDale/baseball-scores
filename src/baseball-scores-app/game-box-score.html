@@ -6,20 +6,35 @@
 <dom-module id="game-box-score">
     <link rel="import" href="/src/technology/technology.css" type="css">
     <template>
-        <box-score-hitters team="[[boxScore.away_team]]"
-                           batters="[[boxScore.away_batters]]"
-                           batter-totals="[[boxScore.away_batter_totals]]">
-        </box-score-hitters>
-        <box-score-pitchers team="[[boxScore.away_team]]"
-                            pitchers="[[boxScore.away_pitchers]]">
-        </box-score-pitchers>
-        <box-score-hitters team="[[boxScore.home_team]]"
-                           batters="[[boxScore.home_batters]]"
-                           batter-totals="[[boxScore.home_batter_totals]]">
-        </box-score-hitters>
-        <box-score-pitchers team="[[boxScore.home_team]]"
-                            pitchers="[[boxScore.home_pitchers]]">
-        </box-score-pitchers>
+        <style>
+            .box-score {
+                padding: 12px;
+                margin: 4px;
+                width: 100%;
+            }
+        </style>
+        <paper-card heading="[[boxScore.away_team.full_name]]" class="box-score">
+            <div class="card-content">
+                <box-score-hitters team="[[boxScore.away_team]]"
+                                   batters="[[boxScore.away_batters]]"
+                                   batter-totals="[[boxScore.away_batter_totals]]">
+                </box-score-hitters>
+                <box-score-pitchers team="[[boxScore.away_team]]"
+                                    pitchers="[[boxScore.away_pitchers]]">
+                </box-score-pitchers>
+            </div>
+        </paper-card>
+        <paper-card heading="[[boxScore.home_team.full_name]]" class="box-score">
+            <div class="card-content">
+                <box-score-hitters team="[[boxScore.home_team]]"
+                                   batters="[[boxScore.home_batters]]"
+                                   batter-totals="[[boxScore.home_batter_totals]]">
+                </box-score-hitters>
+                <box-score-pitchers team="[[boxScore.home_team]]"
+                                    pitchers="[[boxScore.home_pitchers]]">
+                </box-score-pitchers>
+            </div>
+        </paper-card>
         <app-route route="{{route}}" pattern="/:eventId" data="{{routeData}}"></app-route>
     </template>
 
