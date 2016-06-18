@@ -1,0 +1,29 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="game-detail-card.html">
+
+<dom-module id="game-list-view">
+    <link rel="import" href="/src/technology/technology.css" type="css">
+    <template>
+        <template is="dom-repeat" items="{{events}}">
+            <game-detail-card game="[[item]]"></game-detail-card>
+        </template>
+        <iron-ajax
+            auto
+            url="/games/"
+            params='{date:"20160614"}'
+            handle-as="json"
+            on-response="handleResponse"
+            debounce-duration="300">
+        </iron-ajax>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'game-list-view',
+            properties: {},
+            handleResponse(data) {
+                this.events = data.detail.response.event;
+            }
+        });
+    </script>
+</dom-module>

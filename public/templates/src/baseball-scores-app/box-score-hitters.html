@@ -1,0 +1,75 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+
+<dom-module id="box-score-hitters">
+    <link rel="import" href="/src/technology/technology.css" type="css">
+    <template>
+        <table class="bordered striped">
+            <thead>
+            <tr>
+                <th>Hitters</th>
+                <th>AB</th>
+                <th>R</th>
+                <th>H</th>
+                <th>2B</th>
+                <th>3B</th>
+                <th>HR</th>
+                <th>RBI</th>
+                <th>BB</th>
+                <th>SO</th>
+                <th>AVG</th>
+                <th>OBP</th>
+                <th>SLG</th>
+            </tr>
+            </thead>
+            <tbody>
+            <template is="dom-repeat" items="[[batters]]">
+                <tr>
+                    <td>[[item.display_name]], [[item.position]]</td>
+                    <td>[[item.at_bats]]</td>
+                    <td>[[item.runs]]</td>
+                    <td>[[item.hits]]</td>
+                    <td>[[item.doubles]]</td>
+                    <td>[[item.triples]]</td>
+                    <td>[[item.home_runs]]</td>
+                    <td>[[item.rbi]]</td>
+                    <td>[[item.walks]]</td>
+                    <td>[[item.strike_outs]]</td>
+                    <td>[[item.avg_string]]</td>
+                    <td>[[item.obp_string]]</td>
+                    <td>[[item.slg_string]]</td>
+                </tr>
+            </template>
+            </tbody>
+            <tfoot>
+            <tr>
+                <td>
+                    <strong>
+                        Totals
+                    </strong>
+                </td>
+                <td>[[batterTotals.at_bats]]</td>
+                <td>[[batterTotals.runs]]</td>
+                <td>[[batterTotals.hits]]</td>
+                <td>[[batterTotals.doubles]]</td>
+                <td>[[batterTotals.triples]]</td>
+                <td>[[batterTotals.home_runs]]</td>
+                <td>[[batterTotals.rbi]]</td>
+                <td>[[batterTotals.walks]]</td>
+                <td>[[batterTotals.strike_outs]]</td>
+                <td>[[batterTotals.avg_string]]</td>
+                <td>[[batterTotals.obp_string]]</td>
+                <td>[[batterTotals.slg_string]]</td>
+            </tr>
+            </tfoot>
+        </table>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'box-score-hitters',
+            properties: {}
+        });
+    </script>
+</dom-module>

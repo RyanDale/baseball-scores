@@ -1,6 +1,20 @@
 {
-  "name": "baseball-scores",
-  "main": "index.html",
+  "name": "kraken-demo",
+  "description": "Kraken project",
+  "main": "index.js",
+  "author": "Ryan Dale",
+  "moduleType": [
+    "node"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components",
+    "test",
+    "tests"
+  ],
   "dependencies": {
     "polymer": "Polymer/polymer#^1.0.0",
     "paper-datatable": "^0.9.8",

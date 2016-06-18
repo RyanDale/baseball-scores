@@ -1,0 +1,19 @@
+{
+  "name": "baseball-scores",
+  "main": "index.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0",
+    "paper-datatable": "^0.9.8",
+    "paper-card": "PolymerElements/paper-card#^1.1.1",
+    "paper-fab": "PolymerElements/paper-fab#^1.2.0",
+    "paper-scroll-header-panel": "PolymerElements/paper-scroll-header-panel#^1.0.15",
+    "app-route": "PolymerElements/app-route#^0.9.1",
+    "iron-pages": "PolymerElements/iron-pages#^1.0.7"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "web-component-tester": "^4.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+  }
+}
