@@ -36,12 +36,25 @@
             </div>
         </paper-card>
         <app-route route="{{route}}" pattern="/:eventId" data="{{routeData}}"></app-route>
+        <template is="dom-if" if="{{routeData.eventId}}">
+            <iron-ajax
+                    auto
+                    id="box-score-details"
+                    url="/game/{{routeData.eventId}}"
+                    handle-as="json"
+                    on-response="handleResponse"
+                    debounce-duration="300">
+            </iron-ajax>
+        </template>
     </template>
 
     <script>
         Polymer({
             is: 'game-box-score',
-            properties: {}
+            properties: {},
+            handleResponse(data) {
+                this.boxScore = data.detail.response;
+            }
         });
     </script>
 </dom-module>
