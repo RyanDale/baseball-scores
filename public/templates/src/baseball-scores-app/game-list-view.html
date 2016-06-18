@@ -4,11 +4,20 @@
 <dom-module id="game-list-view">
     <link rel="import" href="/src/technology/technology.css" type="css">
     <template>
+        <style>
+            #fab {
+                position: fixed;
+                bottom: 16px;
+                right: 32px;
+            }
+        </style>
         <template is="dom-repeat" items="{{events}}">
             <game-detail-card game="[[item]]"></game-detail-card>
         </template>
+        <paper-fab on-tap="refreshData" id="fab" icon="refresh"></paper-fab>
         <iron-ajax
             auto
+            id="list-view-details"
             url="/games/"
             params='{"date":"20160617"}'
             handle-as="json"
@@ -23,6 +32,9 @@
             properties: {},
             handleResponse(data) {
                 this.events = data.detail.response.event;
+            },
+            refreshData() {
+                document.querySelector('#list-view-details').generateRequest();
             }
         });
     </script>
