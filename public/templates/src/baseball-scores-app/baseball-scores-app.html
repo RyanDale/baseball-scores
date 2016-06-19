@@ -33,7 +33,7 @@
         </style>
 
         <!-- app-location binds to the app's URL -->
-        <app-location route="{{route}}"></app-location>
+        <app-location route="{{route}}" use-hash-as-path></app-location>
 
         <!-- this app-route manages the top-level routes -->
         <app-route
@@ -54,11 +54,12 @@
     <script>
         Polymer({
             is: 'baseball-scores-app',
-            properties: {
-                prop1: {
-                    type: String,
-                    value: 'baseball-scores-app'
-                }
+            ready() {
+                this.async(() => {
+                    if (!this.route.path) {
+                        this.set('route.path', '/');
+                    }
+                });
             }
         });
     </script>
