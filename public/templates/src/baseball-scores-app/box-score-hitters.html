@@ -5,6 +5,11 @@
 <dom-module id="box-score-hitters">
     <link rel="import" href="/src/technology/technology.css" type="css">
     <template>
+        <style>
+            .substitute-spacing {
+                margin-left: 2em;
+            }
+        </style>
         <table class="bordered striped">
             <thead>
             <tr>
@@ -26,7 +31,11 @@
             <tbody>
             <template is="dom-repeat" items="[[batters]]">
                 <tr>
-                    <td>[[item.display_name]], [[item.position]]</td>
+                    <td>
+                        <span class$="{{isSubstitutePlayer(item.sub_bat_order)}}">
+                            [[item.display_name]], [[item.position]]
+                        </span>
+                    </td>
                     <td>[[item.at_bats]]</td>
                     <td>[[item.runs]]</td>
                     <td>[[item.hits]]</td>
@@ -69,7 +78,8 @@
     <script>
         Polymer({
             is: 'box-score-hitters',
-            properties: {}
+            properties: {},
+            isSubstitutePlayer: subBatOrder => subBatOrder > 0 ? 'substitute-spacing' : ''
         });
     </script>
 </dom-module>
