@@ -1,40 +1,85 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-date-picker/paper-date-picker.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="game-detail-card.html">
 
 <dom-module id="game-list-view">
     <link rel="import" href="/src/technology/technology.css" type="css">
     <template>
         <style>
+            .top-container{
+                margin: 6px 0;
+            }
             #fab {
                 position: fixed;
                 bottom: 16px;
                 right: 32px;
             }
         </style>
+        <div class="top-container">
+            <h3>Baseball Scores: {{displayDate}}</h3>
+            <paper-button on-tap="openDatePicker" class="primary" raised>Change Date</paper-button>
+        </div>
         <template is="dom-repeat" items="{{events}}">
-            <game-detail-card game="[[item]]"></game-detail-card>
+            <game-detail-card game="{{item}}"></game-detail-card>
         </template>
         <paper-fab on-tap="refreshData" id="fab" icon="refresh"></paper-fab>
         <iron-ajax
             auto
             id="list-view-details"
             url="/games/"
-            params='{"date":"20160617"}'
+            params='{{ajaxParams}}'
             handle-as="json"
             on-response="handleResponse"
             debounce-duration="300">
         </iron-ajax>
+        <paper-dialog id="datePicker" class="paper-date-picker-dialog" modal on-iron-overlay-closed="closeDatePicker">
+            <paper-date-picker id="picker" date="[[date]]"></paper-date-picker>
+            <div class="buttons">
+                <paper-button dialog-dismiss>Cancel</paper-button>
+                <paper-button dialog-confirm>OK</paper-button>
+            </div>
+        </paper-dialog>
     </template>
 
     <script>
         Polymer({
             is: 'game-list-view',
-            properties: {},
+            properties: {
+                date: {
+                    type: String,
+                    value: new Date()
+                },
+                ajaxParams: {
+                    type: Object,
+                    computed: 'processParams(date)'
+                }
+            },
             handleResponse(data) {
                 this.events = data.detail.response.event;
             },
+            processParams: date => ({
+                "date": moment(date).format('YYYYMMDD')
+            }),
             refreshData() {
                 document.querySelector('#list-view-details').generateRequest();
+            },
+            openDatePicker() {
+                this.$.datePicker.toggle();
+            },
+            closeDatePicker(e) {
+                if (!e.detail.confirmed) {
+                    return;
+                }
+                this.date = this.$.picker.date;
+                this.events = [];
+                this.setDisplayDate();
+            },
+            setDisplayDate() {
+                this.displayDate = moment(this.date).format('MMMM Do YYYY');
+            },
+            ready() {
+                this.setDisplayDate();
             }
         });
     </script>

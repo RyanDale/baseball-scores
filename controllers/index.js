@@ -36,7 +36,8 @@ module.exports = function (router) {
                 'Authorization': 'Bearer 8d11591d-a588-43b5-9dea-a68fb2b1fc39'
             },
             qs: {
-                date: req.query.date
+                date: req.query.date,
+                sport: 'mlb'
             },
             useQuerystring: true
         };
