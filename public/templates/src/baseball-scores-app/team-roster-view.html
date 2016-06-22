@@ -1,0 +1,63 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+
+<dom-module id="team-roster-view">
+    <link rel="import" href="/src/technology/technology.css" type="css">
+    <template>
+        <style>
+            .box-score {
+                padding: 12px;
+                margin: 4px;
+                width: 100%;
+            }
+        </style>
+        <paper-card heading="[[roster.team.full_name]]" class="box-score">
+            <div class="card-content">
+                <table class="bordered striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>B/T</th>
+                        <th>Ht</th>
+                        <th>Wt</th>
+                        <th>DOB</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <template is="dom-repeat" items="[[roster.players]]">
+                        <tr>
+                            <td>[[item.uniform_number]]</td>
+                            <td>[[item.display_name]]</td>
+                            <td>[[item.position]]</td>
+                            <td>[[item.bats]]/[[item.throws]]</td>
+                            <td>[[item.height_formatted]]</td>
+                            <td>[[item.weight_lb]]</td>
+                            <td>[[item.birthdate]]</td>
+                        </tr>
+                    </template>
+                    </tbody>
+                </table>
+            </div>
+        </paper-card>
+        <app-route route="{{route}}" pattern="/:teamId" data="{{routeData}}"></app-route>
+        <template is="dom-if" if="{{routeData.teamId}}">
+            <iron-ajax
+                    auto
+                    id="team-roster"
+                    url="/roster/{{routeData.teamId}}"
+                    handle-as="json"
+                    last-response="{{ roster }}"
+                    debounce-duration="300">
+            </iron-ajax>
+        </template>
+    </template>
+
+    <script>
+        Polymer({
+            is: 'team-roster-view'
+        });
+    </script>
+</dom-module>

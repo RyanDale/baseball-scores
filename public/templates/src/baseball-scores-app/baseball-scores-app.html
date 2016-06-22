@@ -17,6 +17,7 @@
 
 <link rel="import" href="game-list-view.html">
 <link rel="import" href="game-box-score.html">
+<link rel="import" href="team-roster-view.html">
 
 
 <dom-module id="baseball-scores-app">
@@ -46,6 +47,7 @@
         <div class="container">
             <iron-pages selected="[[routeData.view]]" attr-for-selected="name">
                 <game-box-score name="box-score" route="{{subroute}}"></game-box-score>
+                <team-roster-view name="roster" route="{{subroute}}"></team-roster-view>
                 <game-list-view name="" route="{{subroute}}"></game-list-view>
             </iron-pages>
         </div>

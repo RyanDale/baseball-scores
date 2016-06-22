@@ -31,7 +31,7 @@ module.exports = function (router) {
 
     router.get('/roster/:teamId', function (req, res, next) {
         let options = {
-            url: `https://erikberg.com/mlb/results/${req.params.teamId}.json`,
+            url: `https://erikberg.com/mlb/roster/${req.params.teamId}.json`,
             headers: headers
         };
 
